@@ -1,7 +1,24 @@
 /* ----- Global Variables ----- */
 const gallery = document.getElementById('gallery')
+const searchContainer = document.querySelector('.search-container')
 let employees = [] // Store fetched employee data
 let modalIndex = 0 // Track which employee is currently displayed in modal
+
+/* ----- Add Search Form ----- */
+const addSearchForm = () => {
+  const searchHTML = `
+    <form action="#" method="get">
+      <input type="search" id="search-input" class="search-input" placeholder="Search...">
+      <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+    </form>
+  `
+  searchContainer.insertAdjacentHTML('beforeend', searchHTML)
+
+  const searchInput = document.getElementById('search-input')
+  searchInput.addEventListener('keyup', () => {
+    filterEmployees(searchInput.value)
+  })
+}
 
 /* ----- Fetch 12 Random Users ----- */
 const fetchEmployees = () => {
@@ -11,7 +28,7 @@ const fetchEmployees = () => {
       employees = data.results
       displayEmployees(employees)
     })
-    .catch((error) => console.error('Error fetching data:', error))
+    .catch((err) => console.error('Error fetching data:', err))
 }
 
 /* ----- Display Employees in Gallery ----- */
@@ -20,7 +37,7 @@ const displayEmployees = (employeeList) => {
     const employeeHTML = `
       <div class="card" data-index="${index}">
         <div class="card-img-container">
-          <img class="card-img" src="${employee.picture.medium}" alt="profile picture">
+          <img class="card-img" src="${employee.picture.medium}" alt="profile picture ${employee.name.first} ${employee.name.last}">
         </div>
         <div class="card-info-container">
           <h3 class="card-name cap">${employee.name.first} ${employee.name.last}</h3>
@@ -35,6 +52,17 @@ const displayEmployees = (employeeList) => {
   // Add click listeners to open modal
   const cards = document.querySelectorAll('.card')
   cards.forEach((card) => card.addEventListener('click', openModal))
+}
+
+/* ----- Filter Employees by Name ----- */
+const filterEmployees = (searchTerm) => {
+  const filtered = employees.filter((employee) => {
+    ;`${employee.name.first} ${employee.name.last}`
+      .toLowerCase()
+      .includes(searchTerm)
+      .toLowerCase()
+  })
+  displayEmployees(filtered)
 }
 
 /* ----- Generate Modal HTML ----- */
