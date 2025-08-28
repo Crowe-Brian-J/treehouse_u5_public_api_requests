@@ -71,13 +71,49 @@ const generateModalHTML = (employee) => {
 const openModal = (e) => {
   modalIndex = parseInt(e.currentTarget.getAttribute('data-index'))
   const employee = employees[modalIndex]
-
-  document.body.insertAdjacentHTML('beforeend', modalHTML)
-
   const closeBtn = document.getElementById('modal-close-btn')
+  const prevBtn = document.getElementById('modal-prev')
+  const nextBtn = document.getElementById('modal-next')
+
+  document.body.insertAdjacentHTML('beforeend', generateModalHTML(employee))
+
   // Close Modal
   closeBtn.addEventListener('click', () => {
     document.querySelector('.modal-container').remove()
+  })
+
+  // Modal Navigation
+  prevBtn.addEventListener('click', () => {
+    navigateModal(-1)
+  })
+  nextBtn.addEventListener('click', () => {
+    navigateModal(1)
+  })
+}
+
+/* ----- Navigate Modal ----- */
+const navigateModal = (direction) => {
+  // Remove Current Modal
+  document.querySelector('.modal-container').remove()
+
+  // Update Index -> Maybe look at removing button view when at index 0 and 11
+  modalIndex += direction
+  if (modalIndex < 0) modalIndex = 0
+  if (modalIndex >= employees.length) modalIndex = employees.length - 1
+
+  // Open New Modal
+  const employee = employees[modalIndex]
+  document.body.insertAdjacentHTML('beforeend', generateModalHTML(employee))
+
+  // Re-add Event Listeners
+  document.getElementById('modal-close-btn').addEventListener('click', () => {
+    document.querySelector('.modal-container').remove()
+  })
+  document.getElementById('modal-prev').addEventListener('click', () => {
+    navigateModal(-1)
+  })
+  document.getElementById('modal-next').addEventListener('click', () => {
+    navigateModal(1)
   })
 }
 
