@@ -4,6 +4,19 @@ const searchContainer = document.querySelector('.search-container')
 let employees = [] // Store fetched employee data
 let modalIndex = 0 // Track which employee is currently displayed in modal
 
+/* ----- Attach Modal Listeners (DRY) ----- */
+const attachModalListeners = () => {
+  const closeBtn = document.getElementById('modal-close-btn')
+  const prevBtn = document.getElementById('modal-prev')
+  const nextBtn = document.getElementById('modal-next')
+
+  closeBtn.addEventListener('click', () =>
+    document.querySelector('.modal-container').remove()
+  )
+  prevBtn.addEventListener('click', () => navigateModal(-1))
+  nextBtn.addEventListener('click', () => navigateModal(1))
+}
+
 /* ----- Add Search Form ----- */
 const addSearchForm = () => {
   const searchHTML = `
@@ -104,22 +117,7 @@ const openModal = (e) => {
 
   document.body.insertAdjacentHTML('beforeend', generateModalHTML(employee))
 
-  const closeBtn = document.getElementById('modal-close-btn')
-  const prevBtn = document.getElementById('modal-prev')
-  const nextBtn = document.getElementById('modal-next')
-
-  // Close Modal
-  closeBtn.addEventListener('click', () => {
-    document.querySelector('.modal-container').remove()
-  })
-
-  // Modal Navigation
-  prevBtn.addEventListener('click', () => {
-    navigateModal(-1)
-  })
-  nextBtn.addEventListener('click', () => {
-    navigateModal(1)
-  })
+  attachModalListeners()
 }
 
 /* ----- Navigate Modal ----- */
