@@ -27,12 +27,15 @@ const fetchEmployees = () => {
     .then((data) => {
       employees = data.results
       displayEmployees(employees)
+      addSearchForm()
     })
     .catch((err) => console.error('Error fetching data:', err))
 }
 
 /* ----- Display Employees in Gallery ----- */
 const displayEmployees = (employeeList) => {
+  // Clear old gallery
+  gallery.innerHTML = ''
   employeeList.forEach((employee, index) => {
     const employeeHTML = `
       <div class="card" data-index="${index}">
@@ -56,12 +59,11 @@ const displayEmployees = (employeeList) => {
 
 /* ----- Filter Employees by Name ----- */
 const filterEmployees = (searchTerm) => {
-  const filtered = employees.filter((employee) => {
-    ;`${employee.name.first} ${employee.name.last}`
+  const filtered = employees.filter((employee) =>
+    `${employee.name.first} ${employee.name.last}`
       .toLowerCase()
-      .includes(searchTerm)
-      .toLowerCase()
-  })
+      .includes(searchTerm.toLowerCase())
+  )
   displayEmployees(filtered)
 }
 
@@ -99,11 +101,12 @@ const generateModalHTML = (employee) => {
 const openModal = (e) => {
   modalIndex = parseInt(e.currentTarget.getAttribute('data-index'))
   const employee = employees[modalIndex]
+
+  document.body.insertAdjacentHTML('beforeend', generateModalHTML(employee))
+
   const closeBtn = document.getElementById('modal-close-btn')
   const prevBtn = document.getElementById('modal-prev')
   const nextBtn = document.getElementById('modal-next')
-
-  document.body.insertAdjacentHTML('beforeend', generateModalHTML(employee))
 
   // Close Modal
   closeBtn.addEventListener('click', () => {
