@@ -4,19 +4,6 @@ const searchContainer = document.querySelector('.search-container')
 let employees = [] // Store fetched employee data
 let modalIndex = 0 // Track which employee is currently displayed in modal
 
-/* ----- Attach Modal Listeners (DRY) ----- */
-const attachModalListeners = () => {
-  const closeBtn = document.getElementById('modal-close-btn')
-  const prevBtn = document.getElementById('modal-prev')
-  const nextBtn = document.getElementById('modal-next')
-
-  closeBtn.addEventListener('click', () =>
-    document.querySelector('.modal-container').remove()
-  )
-  prevBtn.addEventListener('click', () => navigateModal(-1))
-  nextBtn.addEventListener('click', () => navigateModal(1))
-}
-
 /* ----- Add Search Form ----- */
 const addSearchForm = () => {
   const searchHTML = `
@@ -110,40 +97,68 @@ const generateModalHTML = (employee) => {
   return modalHTML
 }
 
+/* ----- Attach Modal Listeners (DRY) ----- */
+const attachModalListeners = () => {
+  const closeBtn = document.getElementById('modal-close-btn')
+  const prevBtn = document.getElementById('modal-prev')
+  const nextBtn = document.getElementById('modal-next')
+
+  closeBtn.addEventListener('click', () =>
+    document.querySelector('.modal-container').remove()
+  )
+
+  // Hide Prev Button on First Employee
+  if (modalIndex === 0) {
+    prevBtn.disabled = true
+    prevBtn.style.opacity = 0.5
+    prevBtn.style.cursor = 'not-allowed'
+  } else {
+    prevBtn.disabled = false
+    prevBtn.style.opacity = 1
+    prevBtn.style.cursor = 'pointer'
+    prevBtn.addEventListener('click', () => navigateModal(-1))
+  }
+
+  // Hide Next Button on Last Employee
+  if (modalIndex === employees.length - 1) {
+    nextBtn.disabled = true
+    nextBtn.style.opacity = 0.5
+    nextBtn.style.cursor = 'not-allowed'
+  } else {
+    nextBtn.disabled = false
+    nextBtn.style.opacity = 1
+    nextBtn.style.cursor = 'pointer'
+    nextBtn.addEventListener('click', () => navigateModal(1))
+  }
+}
+
+/* ----- Show Modal (DRY) ----- */
+const showModal = (index) => {
+  modalIndex = index
+
+  document.querySelector('.modal-container')?.remove() // Remove Old Modal (if it exists)
+  document.body.insertAdjacentHTML(
+    'beforeend',
+    generateModalHTML(employees[index])
+  )
+  attachModalListeners()
+}
+
 /* ----- Open Modal ----- */
 const openModal = (e) => {
   modalIndex = parseInt(e.currentTarget.getAttribute('data-index'))
-  const employee = employees[modalIndex]
-
-  document.body.insertAdjacentHTML('beforeend', generateModalHTML(employee))
-
-  attachModalListeners()
+  showModal(modalIndex)
 }
 
 /* ----- Navigate Modal ----- */
 const navigateModal = (direction) => {
-  // Remove Current Modal
-  document.querySelector('.modal-container').remove()
+  let newIndex = modalIndex + direction
 
-  // Update Index -> Maybe look at removing button view when at index 0 and 11
-  modalIndex += direction
-  if (modalIndex < 0) modalIndex = 0
-  if (modalIndex >= employees.length) modalIndex = employees.length - 1
+  // Keep index within bounds
+  if (newIndex < 0) newIndex = 0
+  if (newIndex >= employees.length) newIndex = employees.length - 1
 
-  // Open New Modal
-  const employee = employees[modalIndex]
-  document.body.insertAdjacentHTML('beforeend', generateModalHTML(employee))
-
-  // Re-add Event Listeners
-  document.getElementById('modal-close-btn').addEventListener('click', () => {
-    document.querySelector('.modal-container').remove()
-  })
-  document.getElementById('modal-prev').addEventListener('click', () => {
-    navigateModal(-1)
-  })
-  document.getElementById('modal-next').addEventListener('click', () => {
-    navigateModal(1)
-  })
+  showModal(newIndex)
 }
 
 /* ----- Initialize ----- */
