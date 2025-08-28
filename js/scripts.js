@@ -37,11 +37,8 @@ const displayEmployees = (employeeList) => {
   cards.forEach((card) => card.addEventListener('click', openModal))
 }
 
-/* ----- Open Modal ----- */
-const openModal = (e) => {
-  modalIndex = parseInt(e.currentTarget.getAttribute('data-index'))
-  const employee = employees[modalIndex]
-
+/* ----- Generate Modal HTML ----- */
+const generateModalHTML = (employee) => {
   const dob = new Date(employee.dob.date)
   const birthday = `${dob.getMonth() + 1}/${dob.getDate()}/${dob.getFullYear()}`
 
@@ -60,8 +57,20 @@ const openModal = (e) => {
           <p class="modal-text">Birthday: ${birthday}</p>
         </div>
       </div>
+      <div class="modal-btn-container">
+        <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+        <button type="button" id="modal-next" class="modal-next btn">Next</button>
+      </div>
     </div>
   `
+
+  return modalHTML
+}
+
+/* ----- Open Modal ----- */
+const openModal = (e) => {
+  modalIndex = parseInt(e.currentTarget.getAttribute('data-index'))
+  const employee = employees[modalIndex]
 
   document.body.insertAdjacentHTML('beforeend', modalHTML)
 
