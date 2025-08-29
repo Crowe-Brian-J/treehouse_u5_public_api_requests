@@ -32,4 +32,16 @@ A web app that fetches random employee data from the [Random User Generator API]
 
 ## Exceeds Expectations
 
+1. Add Search Functionality
+  - Search Bar added at top-right of page
+  - Followed Search Markup in index.html
+
+2. Add Modal Toggle Functionality
+  - Modal Button Container added below Modal Container
+    - Previous and Next Buttons
+    - Previous disabled at index 0
+    - Next disabled at index 11
+  - Followed Modal Button Container Markup in index.html
+
+3. Add Custom Styling
 
