@@ -33,39 +33,39 @@ A web app that fetches random employee data from the [Random User Generator API]
 ## Exceeds Expectations
 
 1. Add Search Functionality
-  - Search Bar added at top-right of page
-  - Followed Search Markup in index.html
+  &nbsp; - Search Bar added at top-right of page
+  &nbsp; - Followed Search Markup in index.html
 
 2. Add Modal Toggle Functionality
-  - Modal Button Container added below Modal Container
-    - Previous and Next Buttons
-      - Previous disabled at index 0
-      - Next disabled at index 11
-  - Followed Modal Button Container Markup in index.html
+  &nbsp; - Modal Button Container added below Modal Container
+    &nbsp; &nbsp; - Previous and Next Buttons
+      &nbsp; &nbsp; &nbsp; - Previous disabled at index 0
+      &nbsp; &nbsp; &nbsp; - Next disabled at index 11
+  &nbsp; - Followed Modal Button Container Markup in index.html
 
 3. Add Custom Styling - styles.css
-  - Change at least one of the following CSS styles
-    [X]. Color
-    [X]. Background Color
-    [X]. Font
-    [X]. Box or Text Shadows
-  - Document Your Style Changes (here and in project submission notes)
+  &nbsp; - Change at least one of the following CSS styles
+    &nbsp; &nbsp; [X]. Color
+    &nbsp; &nbsp; [X]. Background Color
+    &nbsp; &nbsp; [X]. Font
+    &nbsp; &nbsp; [X]. Box or Text Shadows
+  &nbsp; - Document Your Style Changes (here and in project submission notes)
 
-    1. Updates 
-      - Font to "Inter" (ln 17)
-      - Search Input padding, border, and border radius (lns 38-40)
-      - Search Submit border and border radius (lns 54 & 55)
-      - Search Icon Background Color on active, hover, and focus (ln 60)
-      - Card border radius and transition (lns 93 & 96)
-      - Modal border radius (ln 153)
-      - Modal Button Container border radius (ln 202)
-      - Modal Button Container Buttons padding, border radius, and transition (lns 213, 215, & 216)
-    2. Adds
-      - H3 Card Name Color (ln 79)
-      - Card Box Shadow (ln 95)
-      - Card Hover Transform (lns 121-125)
-      - Modal Box Shadow & Animation (lns 155 & 156)
-      - Modal Button Container Buttons (when not disabled)
-    3. Removals
-      - Search Icon Border on active, hover, and focus (ln 60)
-      - Modal Transition (ln 156)
+    &nbsp; 1. Updates 
+      &nbsp; &nbsp; - Font to "Inter" (ln 17)
+      &nbsp; &nbsp; - Search Input padding, border, and border radius (lns 38-40)
+      &nbsp; &nbsp; - Search Submit border and border radius (lns 54 & 55)
+      &nbsp; &nbsp; - Search Icon Background Color on active, hover, and focus (ln 60)
+      &nbsp; &nbsp; - Card border radius and transition (lns 93 & 96)
+      &nbsp; &nbsp; - Modal border radius (ln 153)
+      &nbsp; &nbsp; - Modal Button Container border radius (ln 202)
+      &nbsp; &nbsp; - Modal Button Container Buttons padding, border radius, and transition (lns 213, 215, & 216)
+    &nbsp; 2. Adds
+      &nbsp; &nbsp; - H3 Card Name Color (ln 79)
+      &nbsp; &nbsp; - Card Box Shadow (ln 95)
+      &nbsp; &nbsp; - Card Hover Transform (lns 121-125)
+      &nbsp; &nbsp; - Modal Box Shadow & Animation (lns 155 & 156)
+      &nbsp; &nbsp; - Modal Button Container Buttons (when not disabled)
+    &nbsp; 3. Removals
+      &nbsp; &nbsp; - Search Icon Border on active, hover, and focus (ln 60)
+      &nbsp; &nbsp; - Modal Transition (ln 156)
