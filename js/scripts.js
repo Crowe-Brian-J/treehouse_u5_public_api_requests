@@ -99,13 +99,36 @@ const generateModalHTML = (employee) => {
 
 /* ----- Attach Modal Listeners (DRY) ----- */
 const attachModalListeners = () => {
+  const modalContainer = document.querySelector('.modal-container')
   const closeBtn = document.getElementById('modal-close-btn')
   const prevBtn = document.getElementById('modal-prev')
   const nextBtn = document.getElementById('modal-next')
 
+  // Remove any existing ESC key listener to avoid duplicates
+  document.removeEventListener('keydown', attachModalListeners.escHandler)
+
+  // Close modal on 'X' button
   closeBtn.addEventListener('click', () =>
     document.querySelector('.modal-container').remove()
   )
+
+  // Close modal on 'ESC' key
+  const escHandler = (e) => {
+    if (e.key === 'Escape') {
+      document.querySelector('.modal-container')?.remove() // Only if modal container present
+      document.removeEventListener('keydown', escHandler) // Remove listner after closing
+    }
+  }
+  document.addEventListener('keydown', escHandler)
+
+  // Close modal if clicking outside modal or button container
+  modalContainer.addEventListener('click', (e) => {
+    if (e.target === modalContainer) {
+      // Only trigger if the click is directly on overlay
+      modalContainer.remove()
+      document.removeEventListener('keydown', escHandler)
+    }
+  })
 
   // Hide Prev Button on First Employee
   if (modalIndex === 0) {

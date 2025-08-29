@@ -34,13 +34,16 @@ A web app that fetches random employee data from the [Random User Generator API]
 
 1. Add Search Functionality
   - Search Bar added at top-right of page
+  - Filters employees dynamically by name
   - Followed Search Markup in index.html
 
 2. Add Modal Toggle Functionality
+  - Modal Closes with 'X' Button, 'esc' Key, or clicking away from modal
   - Modal Button Container added below Modal Container
     - Previous and Next Buttons
       - Previous disabled at index 0
       - Next disabled at index 11
+  - Navigation updates modal content correctly
   - Followed Modal Button Container Markup in index.html
 
 3. Add Custom Styling - styles.css
