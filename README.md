@@ -43,5 +43,29 @@ A web app that fetches random employee data from the [Random User Generator API]
     - Next disabled at index 11
   - Followed Modal Button Container Markup in index.html
 
-3. Add Custom Styling
+3. Add Custom Styling - styles.css
+  - Change at least one of the following CSS styles
+    [X]. Color
+    [X]. Background Color
+    [X]. Font
+    [X]. Box or Text Shadows
+  - Document Your Style Changes (here and in project submission notes)
 
+    1. Updates 
+      - Font to "Inter" (ln 17)
+      - Search Input padding, border, and border radius (lns 38-40)
+      - Search Submit border and border radius (lns 54 & 55)
+      - Search Icon Background Color on active, hover, and focus (ln 60)
+      - Card border radius and transition (lns 93 & 96)
+      - Modal border radius (ln 153)
+      - Modal Button Container border radius (ln 202)
+      - Modal Button Container Buttons padding, border radius, and transition (lns 213, 215, & 216)
+    2. Adds
+      - H3 Card Name Color (ln 79)
+      - Card Box Shadow (ln 95)
+      - Card Hover Transform (lns 121-125)
+      - Modal Box Shadow & Animation (lns 155 & 156)
+      - Modal Button Container Buttons (when not disabled)
+    3. Removals
+      - Search Icon Border on active, hover, and focus (ln 60)
+      - Modal Transition (ln 156)

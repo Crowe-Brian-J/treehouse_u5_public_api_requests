@@ -153,8 +153,7 @@ h3.card-name {
     border-radius: 12px; /* Updated */
     border: 1px solid rgba(100, 100, 100, 0.3);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Added */
-    animation: fadeIn 0.3s ease-out; /* Added */
-    /*transition: .4s ease-out;*/
+    animation: fadeIn 0.3s ease-out; /* Added - Transition Removed */
 }
 
 .modal-close-btn {
@@ -213,7 +212,7 @@ h3.card-name {
     padding: 8px 14px; /* Updated */
     background: rgba(0, 0, 0, 0.8);
     border-radius: 20px; /* Updated */
-    transition: background 0.2s;
+    transition: background 0.2s; /* Updated */
 }
 
 /* Added */
