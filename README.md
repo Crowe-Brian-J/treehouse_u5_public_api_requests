@@ -45,10 +45,10 @@ A web app that fetches random employee data from the [Random User Generator API]
 
 3. Add Custom Styling - styles.css
   - Change at least one of the following CSS styles
-    [X]. Color
-    [X]. Background Color
-    [X]. Font
-    [X]. Box or Text Shadows
+    [X] Color
+    [X] Background Color
+    [X] Font
+    [X] Box or Text Shadows
   - Document Your Style Changes (here and in project submission notes)
 
     1. Updates 
