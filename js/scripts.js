@@ -37,7 +37,7 @@ const fetchEmployees = () => {
 const displayEmployees = (employeeList) => {
   // Clear old gallery
   gallery.innerHTML = ''
-  filterEmployees = employeeList // Keep track of what's displayed
+  filteredEmployees = employeeList // Keep track of what's displayed
   employeeList.forEach((employee, index) => {
     const employeeHTML = `
       <div class="card" data-index="${index}">
@@ -145,7 +145,7 @@ const attachModalListeners = () => {
   }
 
   // Hide Next Button on Last Employee
-  if (modalIndex === employees.length - 1) {
+  if (modalIndex === filteredEmployees.length - 1) {
     nextBtn.disabled = true
     nextBtn.style.opacity = 0.5
     nextBtn.style.cursor = 'not-allowed'
@@ -164,7 +164,7 @@ const showModal = (index) => {
   document.querySelector('.modal-container')?.remove() // Remove Old Modal (if it exists)
   document.body.insertAdjacentHTML(
     'beforeend',
-    generateModalHTML(filterEmployees[index]) // Use filteredEmployees to fix error
+    generateModalHTML(filteredEmployees[index]) // Use filteredEmployees to fix error
   )
   attachModalListeners()
 }
