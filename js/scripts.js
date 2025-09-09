@@ -2,6 +2,7 @@
 const gallery = document.getElementById('gallery')
 const searchContainer = document.querySelector('.search-container')
 let employees = [] // Store fetched employee data
+let filteredEmployees = [] // Store filtered fetched employee data
 let modalIndex = 0 // Track which employee is currently displayed in modal
 
 /* ----- Add Search Form ----- */
@@ -36,6 +37,7 @@ const fetchEmployees = () => {
 const displayEmployees = (employeeList) => {
   // Clear old gallery
   gallery.innerHTML = ''
+  filterEmployees = employeeList // Keep track of what's displayed
   employeeList.forEach((employee, index) => {
     const employeeHTML = `
       <div class="card" data-index="${index}">
@@ -162,7 +164,7 @@ const showModal = (index) => {
   document.querySelector('.modal-container')?.remove() // Remove Old Modal (if it exists)
   document.body.insertAdjacentHTML(
     'beforeend',
-    generateModalHTML(employees[index])
+    generateModalHTML(filterEmployees[index]) // Use filteredEmployees to fix error
   )
   attachModalListeners()
 }
@@ -179,7 +181,8 @@ const navigateModal = (direction) => {
 
   // Keep index within bounds
   if (newIndex < 0) newIndex = 0
-  if (newIndex >= employees.length) newIndex = employees.length - 1
+  if (newIndex >= filteredEmployees.length)
+    newIndex = filteredEmployees.length - 1
 
   showModal(newIndex)
 }
